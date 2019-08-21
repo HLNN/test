@@ -196,6 +196,7 @@ class Cube:
     def solve(self):
         url = self.base + self.Str
         response = requests.urlopen(url).read()
+        print(response)
         self.move(response)
         # pattern = re.compile('([URFDLB]\d){1}', re.S)
         # self.moves = re.findall(pattern, response)
@@ -296,7 +297,7 @@ class Cube:
                 self.setBolckPosition(x, y)
 
     def color(self, hsv):
-        if hsv[1] < 60 or (hsv[1] < 85 and hsv[2] < 180):
+        if hsv[1] < 60 or (hsv[1] < 85 and hsv[2] < 160):
             return 'D'
         else:
             if hsv[0] < 10:
@@ -314,6 +315,7 @@ class Cube:
         randStr = ''
         for i in range(50):
             randStr += self.face[random.randint(0, 5)]
+            randStr += str(random.randint(1, 3))
         self.move(randStr)
         
     def move(self, moves):
@@ -335,7 +337,7 @@ class Cube:
             key = cv2.waitKey(30)
             if self.ready:
                 self.displayUpdate = True
-                # cv2.waitKey(300)
+                cv2.waitKey(200)
                 # self.detection()
                 self.solve()
                 self.displayUpdate = False
