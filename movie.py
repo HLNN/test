@@ -72,6 +72,8 @@ class Top:
 
         with open('movie.cvs', 'w') as f:
             f.write(str(self.movies))
+        print('finish')
+        print(os.cmd('ls'))
 
 
 top = Top()
