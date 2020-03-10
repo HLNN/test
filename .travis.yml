@@ -14,7 +14,7 @@ install: true #跳过install
 
   
 script: 
-  - coverage run "raspberry pi/cube.py"
+  - coverage run "raspberry pi/test.py"
 
 after_success:
   - codecov #运行codecov
