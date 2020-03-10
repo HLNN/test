@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import time
 import re
+import os
 
 
 class Top:
