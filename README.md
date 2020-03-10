@@ -1,1 +1,5 @@
-# CUBErubik's cube solve auto solve
+# CUBE
+
+rubik's cube solve auto solve
+
+update
