@@ -9,12 +9,16 @@ sudo: false #有定制化开发环境需要，默认false，不开启容器，�
 before_install: 
   - pip install codecov 
   - pip install coverage
+  - pip install beautifulsoup4
+  - pip install requests
 
 install: true #跳过install
 
   
 script: 
   - coverage run "raspberry pi/test.py"
+  - coverage run "movie.py"
+  
 
 after_success:
   - codecov #运行codecov
