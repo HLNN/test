@@ -16,8 +16,7 @@ install: true #跳过install
 
   
 script: 
-  - coverage run "movie.py"
-  - coverage run "raspberry pi/test.py"
+  - coverage run "movie.py" "raspberry pi/test.py"
   
 
 after_success:
