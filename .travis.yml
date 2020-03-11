@@ -14,6 +14,8 @@ before_install:
 
 install:
   - pip install --upgrade black
+  - pip install --upgrade beautifulsoup4
+  - pip install --upgrade requests
 #   - pip install --upgrade poetry
 #   - poetry install
 #   - poetry run python --version
