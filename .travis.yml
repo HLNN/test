@@ -1,23 +1,120 @@
+dist: xenial   # required for Python >= 3.7
+os: linux
 language: python
-python: "3.6"
 
-notifications:      # 邮箱通知
-  email: false
+cache:
+  - pip
 
-sudo: false #有定制化开发环境需要，默认false，不开启容器，编译效率高
+git:
+  depth: false
+  autocrlf: false
 
-before_install: 
-  - pip install codecov 
-  - pip install coverage
-  - pip install beautifulsoup4
-  - pip install requests
+before_install:
+  - date
 
-install: true #跳过install
+install:
+  - pip install --upgrade poetry
+  - poetry install
+  - poetry run python --version
 
-  
-script: 
-  - coverage run "movie.py" "raspberry pi/test.py"
-  
+script:
+  - poetry run behave
 
-after_success:
-  - codecov #运行codecov
+aliases:
+  test_mac: &test_mac
+    os: osx
+    language: shell
+    osx_image: xcode11.2
+    cache:
+      directories:
+        - $HOME/.pyenv/versions
+    before_install:
+      - eval "$(pyenv init -)"
+      - pyenv install -s $JRNL_PYTHON_VERSION
+      - pyenv global $JRNL_PYTHON_VERSION
+      - pip install --upgrade pip
+      - pip --version
+  test_windows: &test_windows
+    os: windows
+    language: shell
+    cache:
+      directories:
+        - /c/Python36
+        - /c/Python37
+        - /c/Python38
+    before_install:
+      - choco install python --version $JRNL_PYTHON_VERSION
+      - python -m pip install --upgrade pip
+      - pip --version
+
+jobs:
+  fast_finish: true
+  allow_failures:
+    - python: nightly
+
+  include:
+    - name: Lint, via Black
+      python: 3.8
+      script:
+        - black --version
+        - black --check . --verbose --diff
+
+    # Python 3.6 Tests
+    - name: Python 3.6 on Linux
+      python: 3.6
+    - <<: *test_mac
+      name: Python 3.6 on MacOS
+      python: 3.6
+      env:
+        - JRNL_PYTHON_VERSION=3.6.8
+    - <<: *test_windows
+      name: Python 3.6 on Windows
+      python: 3.6
+      env:
+        - JRNL_PYTHON_VERSION=3.6.8
+        - PATH=/c/Python36:/c/Python36/Scripts:$PATH
+        - PYTHONIOENCODING=UTF-8
+
+    # Python 3.7 Tests
+    - name: Python 3.7 on Linux
+      python: 3.7
+    - <<: *test_mac
+      name: Python 3.7 on MacOS
+      python: 3.7
+      env:
+        - JRNL_PYTHON_VERSION=3.7.5
+    - <<: *test_windows
+      name: Python 3.7 on Windows
+      python: 3.7
+      env:
+        - JRNL_PYTHON_VERSION=3.7.5
+        - PATH=/c/Python37:/c/Python37/Scripts:$PATH
+        - PYTHONIOENCODING=UTF-8
+
+    # Python 3.8 Tests
+    - name: Python 3.8 on Linux
+      python: 3.8
+    - <<: *test_mac
+      name: Python 3.8 on MacOS
+      python: 3.8
+      env:
+        - JRNL_PYTHON_VERSION=3.8.0
+    - <<: *test_windows
+      name: Python 3.8 on Windows
+      python: 3.8
+      env:
+        - JRNL_PYTHON_VERSION=3.8.0
+        - PATH=/c/Python38:/c/Python38/Scripts:$PATH
+        - PYTHONIOENCODING=UTF-8
+
+    # ... and beyond!
+    - name: Python nightly on Linux
+      python: nightly
+
+    # Specialty tests
+    - name: Python 3.7 on Linux, not UTC
+      python: 3.7
+      env:
+        - TZ=America/Edmonton
+
+   
