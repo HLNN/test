@@ -17,12 +17,13 @@ install:
   - pip install --upgrade beautifulsoup4
   - pip install --upgrade requests
   - pip install --upgrade codecov
+  - pip install --upgrade coverage
 #   - pip install --upgrade poetry
 #   - poetry install
 #   - poetry run python --version
 
 script:
-  - codecov run movie.py
+  - coverage run movie.py
   
 after_success:
   - codecov
