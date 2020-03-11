@@ -22,7 +22,7 @@ install:
 #   - poetry run python --version
 
 script:
-  - python movie.py
+  - codecov run movie.py
   
 after_success:
   - codecov
