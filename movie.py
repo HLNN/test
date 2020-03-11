@@ -3,7 +3,7 @@ import requests
 import time
 import re
 import os
-import "raspberry pi/cube"
+from raspberry pi import cube
 
 class Top:
     def __init__(self):
