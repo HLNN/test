@@ -16,12 +16,16 @@ install:
   - pip install --upgrade black
   - pip install --upgrade beautifulsoup4
   - pip install --upgrade requests
+  - pip install --user codecov
 #   - pip install --upgrade poetry
 #   - poetry install
 #   - poetry run python --version
 
 script:
   - python movie.py
+  
+after_success:
+  - codecov
 
 aliases:
   test_mac: &test_mac
