@@ -12,13 +12,13 @@ git:
 before_install:
   - date
 
-install:
-  - pip install --upgrade poetry
-  - poetry install
-  - poetry run python --version
+# install:
+#   - pip install --upgrade poetry
+#   - poetry install
+#   - poetry run python --version
 
 script:
-  - poetry run behave
+  - python movie.py
 
 aliases:
   test_mac: &test_mac
