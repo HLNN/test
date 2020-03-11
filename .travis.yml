@@ -12,7 +12,8 @@ git:
 before_install:
   - date
 
-# install:
+install:
+  - pip install --upgrade black
 #   - pip install --upgrade poetry
 #   - poetry install
 #   - poetry run python --version
