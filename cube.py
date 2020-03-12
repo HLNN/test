@@ -454,5 +454,7 @@ class myThread (threading.Thread):
         self.__running.clear() # set to False  
 
 if __name__=="__main__":
+    print("Start!!!")
     cube = Cube()
+    print("Init finishi!!!")
     cube.main()
