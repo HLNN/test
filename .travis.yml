@@ -45,7 +45,7 @@ install:
 
 script:
 #   - coverage run movie.py
-  - docker exec pi bash -c ls
+  - docker exec pi bash -c "ls;pwd"
   - docker exec pi coverage run movie.py
   
 after_success:
