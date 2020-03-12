@@ -14,6 +14,7 @@ git:
 before_install:
   - date
   - docker pull debian:buster
+  - docker run -h
   - docker run --name pi -d debian:buster
   - docker ps
   - docker exec pi pip install requests
