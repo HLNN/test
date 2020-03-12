@@ -13,6 +13,7 @@ git:
   
 
 before_install:
+  - echo $CODECOV_TOKEN
   - date
   - docker pull debian:buster
 #   - docker run --name pi -d --restart always debian:buster
