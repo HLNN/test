@@ -27,6 +27,7 @@ before_install:
   - docker ps
   - docker exec pi apt update
   - docker exec pi apt install -y python3-pip python3-dev python3-setuptools python3-wheel
+  - docker exec pi pip install --upgrade black beautifulsoup4 requests codecov coverage
 
 install:
   - pip install --upgrade black
@@ -39,10 +40,12 @@ install:
 #   - poetry run python --version
 
 script:
-  - coverage run movie.py
+#   - coverage run movie.py
+  - docker exec pi coverage run movie.py
   
 after_success:
-  - codecov
+#   - pi codecov
+  - docker exec pi codecov
 
 aliases:
   test_mac: &test_mac
