@@ -17,8 +17,10 @@ before_install:
   # - docker run --name pi -d --restart always debian:buster
   - docker build --help
   - docker build  -t pi:test .
+  - ls
+  - pwd
   - docker ps
-  - "travis_wait 30 docker exec pi pip install requests"
+  - docker exec pi pip install requests
 
 install:
   - pip install --upgrade black
