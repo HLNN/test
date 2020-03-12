@@ -27,8 +27,7 @@ before_install:
   - docker ps
   - docker exec pi apt update
   - docker exec pi apt install -y python3-pip python3-dev python3-setuptools python3-wheel git
-  - docker exec pi git clone git@github.com:HLNN/test.git
-
+  - docker exec pi git clone  --branch=master https://github.com/HLNN/test.git HLNN/test
 install:
   - pip install --upgrade black
   - pip install --upgrade beautifulsoup4
