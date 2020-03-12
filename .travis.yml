@@ -14,7 +14,8 @@ git:
 before_install:
   - date
   - docker pull debian:buster
-  - docker run debian:buster
+  - docker run --name pi debian:buster
+  - docker exec pi pip install requests
 
 install:
   - pip install --upgrade black
