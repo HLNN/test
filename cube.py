@@ -10,7 +10,7 @@ import serial
 import matplotlib.pyplot as plot
 
 # import gpio
-import config
+# import config
 
 
 class Cube:
