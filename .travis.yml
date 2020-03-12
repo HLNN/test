@@ -15,7 +15,8 @@ before_install:
   - date
   - docker pull debian:buster
 #   - docker run --name pi -d --restart always debian:buster
-  - docker run --name pi -d debian:buster
+  - docker run --name pi -d -t debian:buster
+  - docker ps
   - docker start pi
 #   - docker-compose up -d --build pi
 #   - docker-compose ps
