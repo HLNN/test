@@ -13,12 +13,13 @@ git:
 
 before_install:
   - date
-  # - docker pull debian:buster
-  # - docker run --name pi -d --restart always debian:buster
-  - docker-compose up -d --build pi
-  - docker-compose ps
-  - docker build --help
-  - docker build  -t pi:test .
+  - docker pull debian:buster
+  - docker run --name pi -d --restart always debian:buster
+  - docker start pi
+#   - docker-compose up -d --build pi
+#   - docker-compose ps
+#   - docker build --help
+#   - docker build  -t pi:test .
   - ls
   - pwd
   - docker ps
