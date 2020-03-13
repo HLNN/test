@@ -20,7 +20,10 @@ before_install:
 #  - docker-compose ps
 #  - docker build --help
 #  - docker build  -t pi:test .
-  - docker build -t pi
+  - docker build --help
+  - docker run --help
+  - docker exec --help
+  - docker build -t pi -
   - XSOCK=/tmp/.X11-unix
   - XAUTH=/tmp/.docker.xauth
   - xauth nlist :0 | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
@@ -34,8 +37,6 @@ before_install:
   - ls
   - pwd
   - docker ps
-  - docker run --help
-  - docker exec --help
   - docker exec pi apt update
   - docker exec pi apt install -y python3 python3-pip python3-dev python3-setuptools python3-wheel git libsm6 libxrender1
   - docker exec pi git clone  --branch=master https://github.com/HLNN/test.git HLNN/test
