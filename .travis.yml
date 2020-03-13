@@ -27,7 +27,7 @@ before_install:
   - XSOCK=/tmp/.X11-unix
   - XAUTH=/tmp/.docker.xauth
   - xauth nlist :0 | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
-  - docker run -ti -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH pi
+  - docker run -ti -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH pi:test
 
 #  - docker pull debian:buster
 #  - docker run --name pi -d -t debian:buster
