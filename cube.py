@@ -83,7 +83,7 @@ class Cube:
         self.urlBase = 'http://localhost:8080/'
         self.startTime = 0.0
         self.endTime = 0.0
-        self.serial = serial.Serial("/dev/ttyUSB0",9600,timeout=0.5)
+        # self.serial = serial.Serial("/dev/ttyUSB0",9600,timeout=0.5)
         print('Serial is OK!') if self.serial.isOpen() else print('Open serial failed!')
         self.moves = []
         self.frame = []
