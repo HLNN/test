@@ -57,8 +57,7 @@ install:
 
 script:
 #   - coverage run movie.py
-  - docker exec pi bash -c "cd HLNN/test;pwd;xhost +local:root;coverage run cube.py"
-  - docker exec pi bash -c "cd HLNN/test;pwd;codecov -t a333d0f7-1944-4eb2-a032-3d2c6c5b51a4"
+  - docker exec pi bash -c "cd HLNN/test;pwd;xhost +local:root;coverage run cube.py;codecov -t a333d0f7-1944-4eb2-a032-3d2c6c5b51a4"
 #   - docker exec pi coverage run movie.py
   
 after_success:
