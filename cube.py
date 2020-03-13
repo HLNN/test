@@ -418,6 +418,7 @@ class Cube:
         # self.rand()
         # self.Str = 'FDFBURUULBDLLRFRRBRBULFULDBDBURDFFURLLFRLFDBBDLUDBUDFR'
         # self.ready = 1
+        return
         while not self.stop:
             self.detection()
             self.show()
