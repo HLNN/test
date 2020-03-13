@@ -15,15 +15,22 @@ git:
 before_install:
   - echo $CODECOV_TOKEN
   - date
-  - docker pull debian:buster
-#   - docker run --name pi -d --restart always debian:buster
-  - docker run --name pi -d -t debian:buster
-  - docker ps
-  - docker start pi
-#   - docker-compose up -d --build pi
-#   - docker-compose ps
-#   - docker build --help
-#   - docker build  -t pi:test .
+#  - docker run --name pi -d --restart always debian:buster
+#  - docker-compose up -d --build pi
+#  - docker-compose ps
+#  - docker build --help
+#  - docker build  -t pi:test .
+  - docker build -t pi
+  - XSOCK=/tmp/.X11-unix
+  - XAUTH=/tmp/.docker.xauth
+  - xauth nlist :0 | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
+  - docker run -ti -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH pi
+
+#  - docker pull debian:buster
+#  - docker run --name pi -d -t debian:buster
+#  - docker ps
+#  - docker start pi
+
   - ls
   - pwd
   - docker ps
@@ -33,19 +40,9 @@ before_install:
   - docker exec pi apt install -y python3 python3-pip python3-dev python3-setuptools python3-wheel git libsm6 libxrender1
   - docker exec pi git clone  --branch=master https://github.com/HLNN/test.git HLNN/test
   - docker exec pi python3 -m pip install --upgrade black beautifulsoup4 requests codecov coverage opencv-python numpy serial matplotlib
-# import cv2
-# import re
-# import os
-# import urllib.request as requests
-# import time
-# import numpy
-# import threading
-# import random
-# import serial
-# import matplotlib.pyplot as plot
 
 install:
-  - docker exec pi python3 -m pip install --upgrade black beautifulsoup4 requests codecov coverage
+  - docker exec pi python3 -m pip install --upgrade black beautifulsoup4 requests codecov coverage opencv-python numpy serial matplotlib
 #   - pip install --upgrade black
 #   - pip install --upgrade beautifulsoup4
 #   - pip install --upgrade requests
