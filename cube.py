@@ -19,8 +19,8 @@ class Cube:
         self.ready = False
         self.displayUpdate = False
         self.needSave = False
-        self.thread = myThread(1, "display", 1, self)
-        self.win = cv2.namedWindow("Cube")
+        # self.thread = myThread(1, "display", 1, self)
+        # self.win = cv2.namedWindow("Cube")
         self.face = "URFDLB"
         self.hsv = (-1, -1, -1)
         self.position = {
@@ -413,7 +413,7 @@ class Cube:
     def main(self):
         # self.thread.start()
         # self.show()
-        cv2.setMouseCallback("Cube", self.mouseCallback)
+        # cv2.setMouseCallback("Cube", self.mouseCallback)
         self.loadPosition()
         # self.rand()
         # self.Str = 'FDFBURUULBDLLRFRRBRBULFULDBDBURDFFURLLFRLFDBBDLUDBUDFR'
